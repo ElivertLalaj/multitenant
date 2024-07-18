@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -15,90 +20,81 @@ import { CommonModule } from '@angular/common';
 import { Login } from '../models/login';
 import { LoginService } from './login.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+import { MainModule } from '../../module';
+
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    FormsModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSlideToggleModule,
-    MatSelectModule,
-    MatOptionModule,
-    ReactiveFormsModule,
-    
+    MainModule
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  username: String = ""
-  password: String = ""
-  token : any = "token"
+  username: String = '';
+  password: String = '';
+  token: any = 'token';
 
-  url = "http://localhost:8080/api/v1/login"
- 
+  url = 'http://localhost:8080/api/v1/login';
+
   loginForm: FormGroup;
 
   constructor(
-    // private router: Router,
-    private loginService : LoginService,
-    private formBuilder: FormBuilder,
-
-  ){
-
-
+    private router: Router,
+    private loginService: LoginService,
+    private formBuilder: FormBuilder
+  ) {
     this.loginForm = this.formBuilder.group({
-      tenant: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
+      tenant: ['', Validators.required],
     });
-
   }
 
-  
-  onSubmit() {
-
-    this.token = "token"
-
-
-    console.log(this.loginForm.value)
- if (this.loginForm.valid) {
-  const username = this.loginForm.value.username;
-  const password = this.loginForm.value.password;
-  const tenant = this.loginForm.value.tenant;
-
-
-console.log("username :" , username)
-console.log("password :" , password)
-
-var tokenRequest: Login = {
-  password: password,
-  username: username,
-  tenant: tenant
-};
-this.loginService.getToken(tokenRequest).subscribe(TokenResponse => {
-  console.log(TokenResponse);
-  this.token = TokenResponse.data.accessToken;
-  localStorage.setItem("token" , this.token);
-})
-  
-    }else {
-      alert("form is not valid")
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwtDecode(token);
+    } catch (Error) {
+      return null;
     }
-     
-    
   }
 
- 
-}
+  onSubmit() {
+    this.token = 'token';
 
+    console.log(this.loginForm.value);
+
+    if (this.loginForm.valid) {
+      const username = this.loginForm.value.username;
+      const password = this.loginForm.value.password;
+      const tenant = this.loginForm.value.tenant;
+
+      console.log('username :', username);
+      console.log('password :', password);
+      console.log('tenant :', tenant);
+
+      var tokenRequest: Login = {
+        password: password,
+        username: username,
+        tenant: tenant,
+      };
+
+      this.loginService.getToken(tokenRequest).subscribe((TokenResponse) => {
+        console.log(TokenResponse);
+        this.token = TokenResponse.data.accessToken;
+        localStorage.setItem('token', this.token);
+        this.router.navigate(['/home']);
+        var decodeToken = this.getDecodedAccessToken(this.token);
+
+        console.log(decodeToken);
+      });
+    } else {
+      alert('form is not valid');
+    }
+
+  
+  }
+}

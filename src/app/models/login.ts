@@ -7,7 +7,7 @@ export interface Login {
 
 export interface TokenResponse {
   success: boolean;
-  message: null | string;
+  error: null | string ;
   data: {
     accessToken: string;
     token: string;

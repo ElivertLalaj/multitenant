@@ -19,12 +19,15 @@ export class LoginService {
 
 
   getToken(UserLogInInfo : Login) : Observable<TokenResponse> {
+    const url = this.url + 'login'
+
     const headers = new HttpHeaders ({
-      'content-type' : 'application/json',
-      'token': UserLogInInfo.tenant
+      'tenant': UserLogInInfo.tenant,
+      'Content-Type': 'application/json',
+
     })
     
-    return this.http.post<TokenResponse>(this.url + 'login' , UserLogInInfo, {headers : headers} )
+    return this.http.post<TokenResponse>(url , UserLogInInfo, {headers : headers} )
   }
 
 
