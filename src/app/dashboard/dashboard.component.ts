@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { MainModule } from '../../module';
 import { AuthService } from '../login/AuthService';
+// import { HomeComponent } from '../home/home.component';
 
 
 
@@ -39,9 +40,11 @@ export class DashboardComponent {
     private dashboardService: DashboardService,
     private router: Router,
     private formBuilder: FormBuilder,
-    // private logincomponent: LoginComponent,
+    // private homeComponent: HomeComponent,
     private authService: AuthService
   ) {
+
+    // homeComponent.showHeader
 
     let role = this.authService.getRole();
     if (role == 'ADMIN') {

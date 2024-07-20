@@ -1,6 +1,4 @@
-.demo-table {
-    width: 100%;
-  }
+
   
   .mat-mdc-row .mat-mdc-cell {
     border-bottom: 1px solid transparent;
@@ -21,3 +19,14 @@
     display: grid;
     justify-content: center;
   }
+
+  table {
+    margin-top: 2%;
+    width: 70%;
+    margin-inline: 15%;
+    background-color: lavender;
+  }
+
+  .mat-mdc-table {
+     min-width: 70%;
+    }

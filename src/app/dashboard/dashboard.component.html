@@ -1,5 +1,28 @@
-
-
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="dashboard" *ngIf="roles.SUPER_ADMIN">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
 
 <table mat-table [dataSource]="tenant" class="mat-elevation-z8 demo-table">
 
@@ -23,7 +46,7 @@
     <td mat-cell *matCellDef="let element">{{ element.status }}</td>
   </ng-container>
   <ng-container matColumnDef="+">
-    <th mat-header-cell *matHeaderCellDef    data-bs-toggle="modal" data-bs-target="#staticBackdrop">click to add</th>
+    <th mat-header-cell *matHeaderCellDef  data-bs-toggle="modal" data-bs-target="#staticBackdrop">click to add</th>
     <td mat-cell *matCellDef="let element"></td>
   </ng-container>
 

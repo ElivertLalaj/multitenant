@@ -1,18 +1,29 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
-  <mat-form-field>
-    <mat-label>Username</mat-label>
-    <input matInput formControlName="username">
-  </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input matInput type="password" formControlName="password">
-  </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Tenant</mat-label>
-    <input matInput formControlName="tenant">
-  </mat-form-field>
+<div class="login-card">
+  <div class="login-card-header">
+    <h2>Login</h2>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+    <div class="form-container">
+      
+      <mat-form-field class="form-field">
+        <mat-label>Tenant</mat-label>
+        <input matInput formControlName="tenant">
+      </mat-form-field>
 
-  <button type="submit" mat-raised-button color="primary">Login</button>
-</form>
+      <mat-form-field class="form-field">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+    </div>
+    <div class="login-card-actions">
+      <button type="submit" mat-raised-button color="primary">Login</button>
+    </div>
+  </form>
+</div>
