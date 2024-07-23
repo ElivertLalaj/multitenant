@@ -1,0 +1,39 @@
+
+  
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+  }
+  
+  .demo-row-is-clicked {
+    font-weight: bold;
+  }
+  
+
+  .modal-body form {
+    display: grid;
+    justify-content: center;
+  }
+
+  table {
+    margin-top: 2%;
+    width: 70%;
+    margin-inline: 15%;
+    background-color: lavender;
+  }
+
+  .mat-mdc-table {
+     min-width: 70%;
+    }
+
+
+    .modal-header{
+        align-items: center;
+        width: 30%;
+        margin-inline: 35%;
+    }

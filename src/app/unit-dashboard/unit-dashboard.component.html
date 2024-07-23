@@ -1,1 +1,105 @@
-<p>unit-dashboard works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="dashboard" *ngIf="roles.SUPER_ADMIN">Dashboard</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+<table mat-table [dataSource]="unit" class="mat-elevation-z8 demo-table">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>description</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="parent_id">
+      <th mat-header-cell *matHeaderCellDef>parent_id</th>
+      <td mat-cell *matCellDef="let element">{{ element.parent_id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="+">
+      <th mat-header-cell *matHeaderCellDef  data-bs-toggle="modal" data-bs-target="#staticBackdrop">click to add</th>
+      <td mat-cell *matCellDef="let element"></td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="options">
+      <td mat-cell *matCellDef="let element" (click)="editClicked(units?.id)">Click to Edit</td>
+      <td mat-cell *matCellDef="let element" (click)="deleteClicked(units?.id)">Click to Delete</td>
+
+    </ng-container> -->
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+
+  
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Empolye</h1>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
+        <div class="modal-body">
+          
+          <form [formGroup]="addtenant" (ngSubmit)="onSubmit()" >
+            <mat-form-field>
+              <mat-label>id</mat-label>
+              <input matInput formControlName="id">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>name</mat-label>
+                <input matInput formControlName="name">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>description</mat-label>
+                <input matInput formControlName="description">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>parent_id</mat-label>
+                <input matInput formControlName="parent_id">
+              </mat-form-field>
+            <button type="submit" mat-raised-button color="primary">Save</button>
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+
+  

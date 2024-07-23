@@ -40,11 +40,9 @@ export class DashboardComponent {
     private dashboardService: DashboardService,
     private router: Router,
     private formBuilder: FormBuilder,
-    // private homeComponent: HomeComponent,
     private authService: AuthService
   ) {
 
-    // homeComponent.showHeader
 
     let role = this.authService.getRole();
     if (role == 'ADMIN') {
